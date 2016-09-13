@@ -1,16 +1,250 @@
-header{
-  border:1px solid #000;
-  width:100%;
+@import 'partials/vars_foos_mixins';
+@import 'partials/sticky_menu';
+@import 'partials/old_main';
 
-  ul{
-    list-style: none;
-    li {
-      display:inline-block;
+// Concern: Checkout Form only
+
+/* quick reset */
+*,*:before,*:after {
+  box-sizing: border-box;
+  margin: 0; padding: 0;
+}
+html {
+  font-size: 100%;
+  line-height: 100%;
+}
+ul {
+  list-style: none;
+}
+
+/* Fonts: families */
+body, p, input, select {
+  font: {
+    family: $font_plain;
+    weight: 400;
+  }
+}
+h1, h2, h3, h4, label, input[type=submit] {
+  font: {
+    family: $font_plain;
+    weight: 700;
+  }
+  text-transform: uppercase;
+}
+
+/* Blocks / Layout elements */
+.header {
+  padding: xem(20);
+  border-bottom: 1px solid $color_borders;
+  @include e(title) {
+    text-align: center;
+    font-size: xem(35.5);
+  }
+}
+.main {
+  display: block;
+  @include e(title) {
+    text-align: center;
+    font-size: xem(16);
+    padding: xem(20);
+  }
+}
+.footer {
+  background-color: $color_borders;
+  min-height: 5rem;
+}
+*[class^=container] {
+  max-width: 768px;
+  margin: 0 auto;
+  padding: 0 3vw;;
+}
+section {
+  h2, h3, h4 {
+    font-size: xem(16);
+    margin: xem(32) 0;
+  }
+}
+
+// Placeholders
+%form__element {
+  display: block;
+  width: 100%;
+  font-size: xem(17);
+  margin: xem(6) auto xem(18);
+  padding: xem(12);
+}
+%form__element--borders {
+  border: 1px solid $color_borders;
+  border-radius: 3px;
+}
+%form__element--required {
+  content: '\2022'; // bullet char
+  color: $color_warning;
+  font-size: xem(15);
+  padding-left: xem(5);
+}
+%form__element--focus {
+  outline: none;
+  border: 1px solid $color_accent;
+}
+
+
+.form {
+  margin-bottom: xem(96);
+  section {
+    margin-bottom: xem(52);
+  }
+
+  @include e(label) {
+    font-size: xem(10);
+    @include m(required) {
+      &::after {
+        @extend %form__element--required;
+      }
+    }
+  }
+  @include e(input) {
+    @extend %form__element;
+    @extend %form__element--borders;
+    &:focus {
+      @extend %form__element--focus
+    }
+  }
+  @include e(select) {
+    background-image: $svg_select_btn;
+    background-size: 53px;
+    background-position: 100% 50%;
+    background-repeat: no-repeat;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    cursor: pointer;
+    @extend %form__element;
+    @extend %form__element--borders;
+    &:focus {
+      @extend %form__element--focus
+    }
+  }
+  @include e(submit-btn) {
+    @extend %form__element;
+    font-size: xem(16);
+    border: 1px solid $color_accent;
+    border-radius: 3px;
+    background-color: $color_accent;
+    color: $color_paper;
+    &:focus {
+      @extend %form__element--focus;
+      background-color: $color_warning;
+    }
+    &:hover {
+      @extend %form__element--focus;
+      background-color: $color_warning;
     }
   }
 }
 
-footer{
-  border:1px solid #000;
-  width:100%;
+
+.cart-counter {
+  float: right;
+  position: relative;
+  width: 44px;
+  margin-top: xem(36);
+  $local_size: 28px;
+  min-height: $local_size;
+  @include e(icon) {
+    width: $local_size; // overrides Icon defs
+    height: $local_size;
+    background-size: auto $local_size;
+    background-position: -$local_size 0;
+  }
+  @include e(total-qty) {
+    display: inline-block;
+    position: absolute;
+    top: 6px;
+    right: 0;
+    font-weight: 700;
+    color: $color_accent;
+  }
+}
+
+.product-list {
+  margin-top: xem(-10);
+  @include e(item) {
+    padding: xem(10) 0;
+    border-bottom: 1px solid $color_borders;
+    @include clearfix;
+    @include e(image) {
+      float: right;
+      width: 75px;
+      height: 75px;
+      background-color: $color_accent;
+    }
+    @include e(name) {
+      margin: 0;
+      padding: xem(6) 0;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    @include e(qty-price) {
+      width: 66%;
+    }
+  }
+}
+
+DT, DD {
+  float: left;
+  width: 50%;
+  line-height: xem(24);
+}
+DT {
+  clear: left;
+  width: 50%;
+}
+DD {
+  text-align: right;
+}
+DD::before {
+  content: '$';
+}
+.item__qty__val::before {
+  content: none;
+}
+
+.order__summary {
+  margin: xem(54) auto xem(96);
+  @include clearfix;
+  *:last-of-type {
+    font-weight: 700;
+  }
+}
+
+
+/* Media queries */
+
+@media screen and (min-width:481px) {
+  *[class^=container] {
+  padding: 0 10vw;
+  }
+  .cart-counter {
+    margin-top: xem(-20);
+  }
+}
+@media screen and (min-width:769px) {
+  *[class^=container] {
+  padding: 0 3vw;
+  }
+  .order {
+    width: 45%;
+    float: right;
+    margin-left:10%;
+  }
+  .form {
+    width: 45%;
+  }
+}
+@media screen and (min-width:1025px) {
+  *[class^=container] {
+  padding: 0;
+  }
 }

@@ -1,0 +1,77 @@
+// Fonts
+@import 'https://fonts.googleapis.com/css?family=Open+Sans:400,700&subset=latin-ext';
+$font_plain:   'Open Sans', sans-serif;
+$font_headers: 'Open Sans', sans-serif;
+
+// BEM Mixins: e - Element, m - Modifier
+@mixin e($element) {
+	&__#{$element} {
+		@content;
+	}
+}
+@mixin m($modifier) {
+	&--#{$modifier} {
+		@content;
+	}
+}
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}
+
+// temp for visual purposes - preview of blocks
+@mixin brdrs($color, $fade:0.8) {
+	border: 1px dashed transparentize($color, $fade)
+}
+
+// Colors
+$color_main: 		#383633;
+$color_borders:	#C3C3C3;
+$color_accent:  #643A89;
+$color_warning: #BD007B;
+$color_paper:   #FFFFFF;
+
+// Gfx
+$svg_sprite: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMDgiIGhlaWdodD0iMzYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgY2xpcC1ydWxlPSJldmVub2RkIiB2aWV3Qm94PSIwIDAgMTA4MDAgMzYwMCI+PGcgZmlsbD0iIzNEM0IzOSIgZmlsbC1ydWxlPSJub256ZXJvIj48cGF0aCBkPSJNNDQ2MSAyMzc0TDQyNDMgOTcxaC0zMDdsLTE4Ni0zODZoODI0bDIxOCAxNDAyaDEyODlsMzczLTY3NUg1MjQzbC0xNDYtMzg3aDE3NDZsMjYyLTYtNzk3IDE0NTVINDQ2MXptMTc1MyA0OTdjMCAzMzQtNTA4IDMzNC01MDggMCAwLTMzNSA1MDgtMzM1IDUwOCAwem0tMTE5OSAwYzAgMzM0LTUwOSAzMzQtNTA5IDAgMC0zMzUgNTA5LTMzNSA1MDkgMHoiLz48Y2lyY2xlIGN4PSIxNzgzIiBjeT0iMTgwMiIgcj0iMTAwMCIvPjxwYXRoIGQ9Ik04MTAzIDkwMmgxODAwdjE4MDBIODEwM3oiLz48L2c+PC9zdmc+);
+$svg_tile_size: 36px;
+$svg_sprite_size: ($svg_tile_size * 3) $svg_tile_size; // 3 tiles horizontally
+
+$svg_select_btn: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI3MiIgdmlld0JveD0iMCAwIDYwMDAgNzIwMCI+PHBhdGggZmlsbD0iIzNEM0IzOSIgZmlsbC1ydWxlPSJub256ZXJvIiBkPSJNMCAwaDYwMDB2NzIwMEgweiIvPjxwYXRoIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLXdpZHRoPSIxMzMuMyIgZD0iTTM3MDQgMzI0OGwtNzA0IDcwNC03MDQtNzA0Ii8+PC9zdmc+);
+$svg_select_btn_size: 60px 72px;
+
+// Icons
+.svg-icon {
+	display: inline-block;
+	width: svg_tile_size;
+	height: svg_tile_size;
+	background-image: $svg_sprite;
+	background-size: $svg_sprite_size;
+
+	@include m(sample) {
+		background-position: 0 0;
+	}
+	@include m(cart) {
+		background-position: -36p 0;
+	}
+}
+
+// Function: Simple Rems / Ems calculation (without fallback)
+// more: postprocessing: https://www.npmjs.com/package/gulp-pixrem
+$browser-context: 16px; // browsers' default font-size
+@function xem($pixels, $context: $browser-context) {
+  @if (unitless($pixels)) {
+    $pixels: $pixels * 1px;
+  }
+	@if (unitless($context)) {
+    	$context: $context * 1px;
+  }
+	@if ($context != $browser-context) {
+		@return ($pixels / $context) * 1em;
+	} @else {
+		@return ($pixels / $context) * 1rem;
+	}
+}

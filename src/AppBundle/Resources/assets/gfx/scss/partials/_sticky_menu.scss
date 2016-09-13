@@ -1,0 +1,57 @@
+.sticky {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  border-top: 0;
+  background-color: #fff;
+}
+
+.menu {
+  &#{__hamburger} {
+    display: none;
+  }
+}
+@media screen and (max-width:767px) {
+  .menu {
+    position: relative;
+    &#{__hamburger} {
+      display: block;
+      position: absolute;
+      top: 0; right: 25px;
+      span {
+        display: block;
+        width: 19px;
+        height: 3px;
+        margin: 4px 0;
+        background: black;
+        z-index: 99;
+        opacity: 1;
+        transition: all 0.4s;
+      }
+      &.active {
+        span:nth-child(1) {
+          transform: translateY(7px) rotate(-45deg);
+        }
+        span:nth-child(2) {
+          visibility: hidden;
+          opacity: 0;
+        }
+        span:nth-child(3) {
+          transform: translateY(-7px) rotate(45deg);
+        }
+      }
+    }
+    &#{__items} {
+      display: none;
+      &.active {
+        position: relative;
+        display: block;
+        li {
+          display: block;
+        }
+      }
+    }
+  }
+}
