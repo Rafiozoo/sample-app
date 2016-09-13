@@ -13,7 +13,7 @@
     <body>
     <header>
         <div class="menu">
-            <ul>
+            <ul class="menu__items">
                 <li>MenuItem 1</li>
                 <li>MenuItem 2</li>
                 <li>MenuItem 3</li>
@@ -28,7 +28,12 @@
                 <li>MenuItem 12</li>
             </ul>
             <ul>
-                <li><a href="/cart">Go to Checkout (0)</a></li>
+                <li><a href="/cart">Go to Checkout <span id="counter">(0)</span></a></li>
+                <li class="menu__hamburger"><!--&#9776;-->
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </li>
             </ul>
         </div>
     </header>

@@ -49,7 +49,7 @@ class __TwigTemplate_84002f46c589e27b516f8af4ff9d00fa2e627f5b1badd9b9fb05b0a11a4
     <body>
     <header>
         <div class=\"menu\">
-            <ul>
+            <ul class=\"menu__items\">
                 <li>MenuItem 1</li>
                 <li>MenuItem 2</li>
                 <li>MenuItem 3</li>
@@ -64,22 +64,27 @@ class __TwigTemplate_84002f46c589e27b516f8af4ff9d00fa2e627f5b1badd9b9fb05b0a11a4
                 <li>MenuItem 12</li>
             </ul>
             <ul>
-                <li><a href=\"/cart\">Go to Checkout (0)</a></li>
+                <li><a href=\"/cart\">Go to Checkout <span id=\"counter\">(0)</span></a></li>
+                <li class=\"menu__hamburger\"><!--&#9776;-->
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </li>
             </ul>
         </div>
     </header>
         ";
-        // line 35
+        // line 40
         $this->displayBlock('body', $context, $blocks);
-        // line 36
+        // line 41
         echo "    <footer>
         Copyrights
     </footer>
 
         ";
-        // line 40
+        // line 45
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 41
+        // line 46
         echo "
     </body>
 </html>
@@ -97,12 +102,12 @@ class __TwigTemplate_84002f46c589e27b516f8af4ff9d00fa2e627f5b1badd9b9fb05b0a11a4
     {
     }
 
-    // line 35
+    // line 40
     public function block_body($context, array $blocks = array())
     {
     }
 
-    // line 40
+    // line 45
     public function block_javascripts($context, array $blocks = array())
     {
     }
@@ -119,7 +124,7 @@ class __TwigTemplate_84002f46c589e27b516f8af4ff9d00fa2e627f5b1badd9b9fb05b0a11a4
 
     public function getDebugInfo()
     {
-        return array (  106 => 40,  101 => 35,  96 => 6,  90 => 5,  83 => 41,  81 => 40,  75 => 36,  73 => 35,  45 => 10,  40 => 8,  35 => 7,  33 => 6,  29 => 5,  23 => 1,);
+        return array (  111 => 45,  106 => 40,  101 => 6,  95 => 5,  88 => 46,  86 => 45,  80 => 41,  78 => 40,  45 => 10,  40 => 8,  35 => 7,  33 => 6,  29 => 5,  23 => 1,);
     }
 }
 /* <!DOCTYPE html>*/
@@ -137,7 +142,7 @@ class __TwigTemplate_84002f46c589e27b516f8af4ff9d00fa2e627f5b1badd9b9fb05b0a11a4
 /*     <body>*/
 /*     <header>*/
 /*         <div class="menu">*/
-/*             <ul>*/
+/*             <ul class="menu__items">*/
 /*                 <li>MenuItem 1</li>*/
 /*                 <li>MenuItem 2</li>*/
 /*                 <li>MenuItem 3</li>*/
@@ -152,7 +157,12 @@ class __TwigTemplate_84002f46c589e27b516f8af4ff9d00fa2e627f5b1badd9b9fb05b0a11a4
 /*                 <li>MenuItem 12</li>*/
 /*             </ul>*/
 /*             <ul>*/
-/*                 <li><a href="/cart">Go to Checkout (0)</a></li>*/
+/*                 <li><a href="/cart">Go to Checkout <span id="counter">(0)</span></a></li>*/
+/*                 <li class="menu__hamburger"><!--&#9776;-->*/
+/*                     <span></span>*/
+/*                     <span></span>*/
+/*                     <span></span>*/
+/*                 </li>*/
 /*             </ul>*/
 /*         </div>*/
 /*     </header>*/

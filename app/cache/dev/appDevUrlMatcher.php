@@ -120,6 +120,15 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
         }
 
+        // home
+        if (rtrim($pathinfo, '/') === '') {
+            if (substr($pathinfo, -1) !== '/') {
+                return $this->redirect($pathinfo.'/', 'home');
+            }
+
+            return array (  '_controller' => 'AppBundle\\Controller\\CheckoutController::homeAction',  '_route' => 'home',);
+        }
+
         // cart
         if ($pathinfo === '/cart') {
             return array (  '_controller' => 'AppBundle\\Controller\\CheckoutController::cartAction',  '_route' => 'cart',);

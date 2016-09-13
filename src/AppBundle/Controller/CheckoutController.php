@@ -10,6 +10,14 @@ use Symfony\Component\HttpFoundation\Request;
 class CheckoutController extends Controller
 {
     /**
+     * @Route("/", name="home")
+     */
+    public function homeAction(Request $request)
+    {
+        return $this->render('AppBundle:Checkout:index.html.twig', array(
+                // ...
+            ));    }
+        /**
      * @Route("/cart", name="cart")
      */
     public function cartAction(Request $request)
